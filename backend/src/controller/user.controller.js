@@ -77,7 +77,11 @@ export const loginController = async function (req, res) {
 		res
 			.cookie("UserAuth", jwkToken)
 			.status(200)
-			.json({ success: true, message: "User Login successful" });
+			.json({
+				success: true,
+				message: "User Login successful",
+				loginToken: jwkToken,
+			});
 	} catch (error) {
 		console.log(error.message);
 		res.status(500).json({ success: false, message: "Internal Server Error" });

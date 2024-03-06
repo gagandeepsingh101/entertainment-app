@@ -3,8 +3,9 @@ import jwt from "jsonwebtoken";
 export const verifyToken = async function (req, res, next) {
 	try {
 		// Extract token from cookies
-		const token = req.cookies.UserAuth;
-		
+		const token =
+			req.cookies.UserAuth || req.headers["authorization"].split("=")[1];
+
 		// Check if token exists
 		if (!token) {
 			return res.status(401).json({
@@ -26,10 +27,10 @@ export const verifyToken = async function (req, res, next) {
 
 		// Verify token using the public key
 		const decodedToken = jwt.verify(token, publicKey);
-		
+
 		// Extract email from the decoded token and add it to request body
 		req.body.email = decodedToken.email;
-		
+
 		// Proceed to the next middleware
 		next();
 	} catch (error) {
