@@ -7,3 +7,6 @@
 	box-sizing: border-box;
 	font-family: "Outfit", sans-serif;
 }
+input[type="search"]::-webkit-search-cancel-button {
+	display: none;
+  }

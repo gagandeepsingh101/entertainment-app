@@ -3,11 +3,12 @@ import { HiBookmark } from "react-icons/hi2";
 import { MdLocalMovies, MdMovie } from "react-icons/md";
 import { TbDeviceTvOld } from "react-icons/tb";
 import { useLocation, useNavigate } from "react-router-dom";
+import { logoutUser } from "../service/user.service";
 const Header = () => {
 	const navigate = useNavigate();
 	const { pathname } = useLocation();
 	return (
-		<div className="w-11/12 mx-auto sticky top-0  h-fit rounded-xl bg-deepBlue flex px-2 py-3 items-center justify-between lg:h-[95%] lg:w-[5%] lg:flex-col ">
+		<div className="w-11/12 mx-auto sticky top-0  h-fit rounded-xl bg-deepBlue flex px-2 py-3 z-50 items-center justify-between lg:h-[99%] lg:w-[5%] lg:flex-col ">
 			<MdMovie className="text-darkRed text-3xl md:text-4xl" />
 			<div className="flex w-2/3 h-fit items-center justify-center gap-5 text-xl md:text-2xl lg:flex-col lg:h-2/3 lg:justify-start lg:gap-8 lg:text-3xl">
 				<AiFillAppstore
@@ -41,7 +42,11 @@ const Header = () => {
 			</div>
 			<button
 				onClick={() => {
-					navigate("/signup");
+					if (!document.cookie) {
+						navigate("/signup");
+						return;
+					}
+					logoutUser();
 				}}
 				className="h-fit w-fit ring-darkRed ring-1 rounded-full p-1">
 				<img

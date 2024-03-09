@@ -4,12 +4,10 @@ import { Toaster } from "react-hot-toast";
 
 function App() {
 	return (
-		<div className="bg-leanBlue h-screen w-screen overflow-y-scroll flex flex-col overflow-x-hidden items-center justify-evenly py-2 text-white lg:flex-row">
+		<div className="bg-leanBlue relative h-screen w-screen overflow-y-scroll flex flex-col overflow-x-hidden items-center justify-evenly text-white lg:flex-row scrollbar-corner-transparent scrollbar-thin  scrollbar-thumb-darkRed scrollbar-track-transparent overflow-scroll py-5  ">
 			<Toaster />
 			<Header />
-			<div className="w-11/12 h-screen flex items-center justify-center flex-wrap ">
-				<Outlet />
-			</div>
+			<Outlet />
 		</div>
 	);
 }
