@@ -1,8 +1,9 @@
+import SearchBar from "../components/SearchBar"
 
 const Bookmarks = () => {
   return (
-    <>Bookmarks</>
-  )
+		<>
+    </>  )
 }
 
 export default Bookmarks

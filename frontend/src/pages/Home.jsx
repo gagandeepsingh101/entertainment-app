@@ -10,10 +10,8 @@ const Home = () => {
 	useEffect(() => {
 		fetchTrendingMedia(1, setMediaData);
 	}, [fetchTrendingMedia]);
-
 	return (
-		<div className="w-11/12 h-5/6 z-40  lg:h-full  ">
-			<SearchBar />
+		<>
 			<p className="text-HeadingM font-light md:font-normal lg:font-light lg:text-HeadingL">
 				Trending
 			</p>
@@ -35,12 +33,14 @@ const Home = () => {
 			<div className="w-full h-5/6 flex flex-wrap items-center   ">
 				{mediaData &&
 					mediaData.recommended.map((mediaInfo) => (
-						<div key={mediaInfo.id} className="w-[47%] mx-1 my-5 h-1/3 md:w-[30%] md:h-1/2 md:mx-2 md:my-3 lg:w-[23%] lg:h-2/5">
+						<div
+							key={mediaInfo.id}
+							className="w-[47%] mx-1 my-5 h-1/3 md:w-[30%] md:h-1/2 md:mx-2 md:my-3 lg:w-[23%] lg:h-2/5">
 							<SingleCard mediaData={mediaInfo} fieldType={"recommended"} />
 						</div>
 					))}
 			</div>
-		</div>
+		</>
 	);
 };
 
