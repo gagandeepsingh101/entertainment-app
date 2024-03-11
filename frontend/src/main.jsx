@@ -8,6 +8,7 @@ import Login from "./pages/Login.jsx";
 import Movie from "./pages/Movie.jsx";
 import SignUp from "./pages/SignUp.jsx";
 import Tv from "./pages/Tv.jsx";
+import SearchMedia from "./pages/SearchMedia.jsx";
 const router = createBrowserRouter([
 	{
 		path: "/",
@@ -15,19 +16,55 @@ const router = createBrowserRouter([
 		children: [
 			{
 				path: "/",
-				element: <Home />,
+				children: [
+					{
+						path: "/",
+						element: <Home />,
+					},
+					{
+						path: "/search/:mediaType/:searchQuery",
+						element: <SearchMedia />,
+					},
+				],
 			},
 			{
 				path: "/movie",
-				element: <Movie />,
+				children: [
+					{
+						path: "/movie",
+						element: <Movie />,
+					},
+					{
+						path: "/movie/search/:mediaType/:searchQuery",
+						element: <SearchMedia />,
+					},
+				],
 			},
 			{
-				path: "/tv",
-				element: <Tv />,
+				path: "/",
+				children: [
+					{
+						path: "/tv",
+						element: <Tv />,
+					},
+					{
+						path: "/tv/search/:mediaType/:searchQuery",
+						element: <SearchMedia />,
+					},
+				],
 			},
 			{
 				path: "/bookmarks",
-				element: <Bookmarks />,
+				children: [
+					{
+						path: "/bookmarks",
+						element: <Bookmarks />,
+					},
+					{
+						path: "/bookmarks/search/:mediaType/:?searchQuery",
+						element: <SearchMedia />,
+					},
+				],
 			},
 		],
 	},

@@ -27,3 +27,19 @@ export const useFetchTV = async (page, setMediaData) => {
 		console.error("Error fetching trending media:", error);
 	}
 };
+export const useSearchMultiMedia = async (
+	searchQuery,
+	setMediaData,
+	mediaType
+) => {
+	try {
+		if (searchQuery && mediaType) {
+			const { data } = await axios.get(
+				`${tmdbActionUrl}/search/${mediaType}/${searchQuery}`
+			);
+			setMediaData(data.data);
+		}
+	} catch (error) {
+		console.error("Error fetching trending media:", error);
+	}
+};

@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import SearchBar from "../components/SearchBar";
 import { useFetchTrendingMedia } from "../service/tmdb.service";
 import SingleCard from "../components/SingleCard";
 

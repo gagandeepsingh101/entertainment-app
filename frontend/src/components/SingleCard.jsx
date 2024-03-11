@@ -12,17 +12,19 @@ const SingleCard = ({ mediaData, fieldType }) => {
 
 	useEffect(() => {
 		fetchTmdbImage(mediaData.id, setPosterImage, mediaData.mediaType);
-	}, [fetchTmdbImage]);
+	}, [fetchTmdbImage, mediaData.id, mediaData.mediaType]);
 
 	return (
 		<>
 			{fieldType === "trending" ? (
 				<div className="w-full h-full relative group">
-					<img
-						src={"https://image.tmdb.org/t/p/w500" + posterImage}
-						className="w-full h-full rounded-xl absolute z-10 group-hover:opacity-55"
-						alt=""
-					/>
+					{posterImage && (
+						<img
+							src={"https://image.tmdb.org/t/p/w500" + posterImage}
+							className="w-full h-full rounded-xl absolute z-10 group-hover:opacity-55"
+							alt=""
+						/>
+					)}
 					<div className="w-full h-full z-40 relative bg-gradient-to-b from-transparent to-[#000000be] rounded-xl  ">
 						<div className="absolute bottom-1 left-2 md:bottom-2 md:left-3 lg:bottom-3 lg:left-5">
 							<p className="flex items-center text-BodyS font-light md:text-BodyM lg:text-HeadingXS">
@@ -58,14 +60,20 @@ const SingleCard = ({ mediaData, fieldType }) => {
 			) : (
 				<div className="w-full h-5/6 relative flex flex-col justify-between gap-2 group ">
 					<div className="w-full h-5/6 relative ">
-						<img
-							src={
-								"https://image.tmdb.org/t/p/w500" +
-								(posterImage !== undefined ? posterImage : mediaData.image)
-							}
-							className="w-full h-full rounded-xl absolute z-10 group-hover:opacity-55"
-							alt=""
-						/>
+						{posterImage || mediaData?.image ? (
+							<img
+								src={
+									"https://image.tmdb.org/t/p/w500" +
+									(posterImage !== undefined ? posterImage : mediaData?.image)
+								}
+								className="w-full h-full rounded-xl absolute z-10 group-hover:opacity-55"
+								alt=""
+							/>
+						) : (
+							<div className="w-full h-full rounded-xl flex items-center justify-center absolute z-10 group-hover:opacity-55">
+								No Image Preview
+							</div>
+						)}
 						<CiBookmark className="absolute z-50 right-1 top-1 bg-[#00000070] text-2xl p-1 rounded-full hover:bg-white hover:fill-black cursor-pointer md:text-3xl md:right-2 md:top-2 lg:text-4xl" />
 						<div className="hidden group-hover:flex bg-[#ffffff7c] absolute top-1/2 left-1/2 -translate-x-1/2 px-2 py-1 z-50 rounded-full gap-1 items-center -translate-y-1/2 cursor-pointer lg:px-6 lg:py-2 lg:gap-3">
 							<IoPlayCircle className="text-xl md:text-3xl" />
@@ -76,10 +84,10 @@ const SingleCard = ({ mediaData, fieldType }) => {
 					</div>
 					<div className="w-full h-1/6 flex flex-col">
 						<p className="flex items-center text-BodyS font-light md:text-BodyM">
-							<span>{mediaData.releaseDate.split("-")[0]}</span>
+							<span>{mediaData?.releaseDate?.split("-")[0]}</span>
 							<LuDot className="text-BodyS md:text-BodyM" />
 							<span className="flex items-center gap-1">
-								{mediaData.mediaType === "movie" ? (
+								{mediaData?.mediaType === "movie" ? (
 									<>
 										<MdLocalMovies /> <span>Movie</span>
 									</>
@@ -91,9 +99,9 @@ const SingleCard = ({ mediaData, fieldType }) => {
 								)}
 							</span>
 							<LuDot className="text-BodyS md:text-BodyM" />
-							<span>{mediaData.isAdult ? "18+" : "PG"}</span>
+							<span>{mediaData?.isAdult ? "18+" : "PG"}</span>
 						</p>
-						<p className="text-BodyM md:text-HeadingXS">{mediaData.title}</p>{" "}
+						<p className="text-BodyM md:text-HeadingXS">{mediaData?.title}</p>{" "}
 					</div>
 				</div>
 			)}

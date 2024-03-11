@@ -37,7 +37,7 @@ export const discoverMovieController = async (req, res) => {
 		// Responding with transformed data
 		res.json({
 			success: true,
-			data: customizeMediaData(data.results),
+			data: customizeMediaData(data.results, "movie"),
 			totalPages: data.total_pages,
 		});
 	} catch (error) {

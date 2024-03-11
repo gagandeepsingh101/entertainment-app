@@ -17,7 +17,7 @@ export const searchMultiController = async (req, res) => {
 			searchMultiMedia.replace("query_Text", searchQuery.toString())
 		);
 		if (data.results.length === 0) {
-			return res.status(404).json({
+			return res.status(204).json({
 				success: false,
 				message: "Page Not Found",
 			});
@@ -44,7 +44,7 @@ export const searchMovieController = async (req, res) => {
 			searchMovieMedia.replace("query_Text", searchQuery.toString())
 		);
 		if (data.results.length === 0) {
-			return res.status(404).json({
+			return res.status(204).json({
 				success: false,
 				message: "Page Not Found",
 			});
@@ -71,7 +71,7 @@ export const searchTvController = async (req, res) => {
 			searchTvMedia.replace("query_Text", searchQuery.toString())
 		);
 		if (data.results.length === 0) {
-			return res.status(404).json({
+			return res.status(204).json({
 				success: false,
 				message: "Page Not Found",
 			});
