@@ -9,6 +9,8 @@ import Movie from "./pages/Movie.jsx";
 import SignUp from "./pages/SignUp.jsx";
 import Tv from "./pages/Tv.jsx";
 import SearchMedia from "./pages/SearchMedia.jsx";
+import MovieDetail from "./pages/MovieDetail.jsx";
+import TvDetail from "./pages/TvDetail.jsx";
 const router = createBrowserRouter([
 	{
 		path: "/",
@@ -75,6 +77,14 @@ const router = createBrowserRouter([
 	{
 		path: "/login",
 		element: <Login />,
+	},
+	{
+		path: "/movie/:mediaId",
+		element: <MovieDetail />,
+	},
+	{
+		path: "/tv/:mediaId",
+		element: <TvDetail />,
 	},
 ]);
 ReactDOM.createRoot(document.getElementById("root")).render(

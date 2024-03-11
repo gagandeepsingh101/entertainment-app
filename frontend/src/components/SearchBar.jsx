@@ -41,11 +41,11 @@ const SearchBar = () => {
 				id="search"
 				{...register("searchQuery")}
 				placeholder={
-					pathname === "/movie"
+					pathname === "/movie" || mediaType === "movie"
 						? "Search for movies..."
-						: pathname === "/tv"
+						: pathname === "/tv" || mediaType === "tv"
 						? "Search for tv series..."
-						: pathname === "/bookmarks"
+						: pathname === "/bookmarks" || mediaType === "bookmark"
 						? "Search for bookmarks movies and tv series..."
 						: "Search for movies and tv series..."
 				}

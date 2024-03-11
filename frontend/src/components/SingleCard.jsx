@@ -5,14 +5,19 @@ import { TbDeviceTvOld } from "react-icons/tb";
 import { LuDot } from "react-icons/lu";
 import { CiBookmark } from "react-icons/ci";
 import { IoPlayCircle } from "react-icons/io5";
+import { useNavigate } from "react-router-dom";
 
-const SingleCard = ({ mediaData, fieldType }) => {
+const SingleCard = ({ mediaData, fieldType, mediaType }) => {
 	const fetchTmdbImage = useFetchTMDBImage;
 	const [posterImage, setPosterImage] = useState();
-
+	const navigate = useNavigate();
 	useEffect(() => {
-		fetchTmdbImage(mediaData.id, setPosterImage, mediaData.mediaType);
-	}, [fetchTmdbImage, mediaData.id, mediaData.mediaType]);
+		fetchTmdbImage(
+			mediaData.id,
+			setPosterImage,
+			mediaType || mediaData?.mediaType
+		);
+	}, [fetchTmdbImage, mediaData.id, mediaData.mediaType, mediaType]);
 
 	return (
 		<>
@@ -49,7 +54,15 @@ const SingleCard = ({ mediaData, fieldType }) => {
 							</p>
 						</div>
 						<CiBookmark className="absolute right-1 top-1 bg-[#00000070] text-3xl p-1 rounded-full hover:bg-white hover:fill-black cursor-pointer md:right-2 md:top-2 md:text-4xl lg:text-5xl" />
-						<div className="hidden group-hover:flex bg-[#ffffff7c] absolute top-1/2 left-1/2 -translate-x-1/2 px-3 py-1 rounded-full gap-2 items-center -translate-y-1/2 cursor-pointer md:px-4 md:py-2">
+						<div
+							onClick={() => {
+								navigate(
+									`/${mediaData.mediaType ? mediaData.mediaType : mediaType}/${
+										mediaData?.id
+									}`
+								);
+							}}
+							className="hidden group-hover:flex bg-[#ffffff7c] absolute top-1/2 left-1/2 -translate-x-1/2 px-3 py-1 rounded-full gap-2 items-center -translate-y-1/2 cursor-pointer md:px-4 md:py-2">
 							<IoPlayCircle className="text-xl md:text-4xl" />
 							<span className="text-BodyS md:text-BodyM lg:text-HeadingXS">
 								Play
@@ -75,7 +88,15 @@ const SingleCard = ({ mediaData, fieldType }) => {
 							</div>
 						)}
 						<CiBookmark className="absolute z-50 right-1 top-1 bg-[#00000070] text-2xl p-1 rounded-full hover:bg-white hover:fill-black cursor-pointer md:text-3xl md:right-2 md:top-2 lg:text-4xl" />
-						<div className="hidden group-hover:flex bg-[#ffffff7c] absolute top-1/2 left-1/2 -translate-x-1/2 px-2 py-1 z-50 rounded-full gap-1 items-center -translate-y-1/2 cursor-pointer lg:px-6 lg:py-2 lg:gap-3">
+						<div
+							onClick={() => {
+								navigate(
+									`/${mediaData.mediaType ? mediaData.mediaType : mediaType}/${
+										mediaData?.id
+									}`
+								);
+							}}
+							className="hidden group-hover:flex bg-[#ffffff7c] absolute top-1/2 left-1/2 -translate-x-1/2 px-2 py-1 z-50 rounded-full gap-1 items-center -translate-y-1/2 cursor-pointer lg:px-6 lg:py-2 lg:gap-3">
 							<IoPlayCircle className="text-xl md:text-3xl" />
 							<span className="text-BodyS md:text-BodyM lg:text-HeadingXS">
 								Play

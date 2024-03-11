@@ -11,17 +11,11 @@ export const useFetchTrendingMedia = async (page, setMediaData) => {
 		console.error("Error fetching trending media:", error);
 	}
 };
-export const useFetchMovie = async (page, setMediaData) => {
+export const useFetchMultiMedia = async (page, setMediaData, mediaTye) => {
 	try {
-		const { data } = await axios.get(`${tmdbActionUrl}/discover/movie/${page}`);
-		setMediaData(data.data);
-	} catch (error) {
-		console.error("Error fetching trending media:", error);
-	}
-};
-export const useFetchTV = async (page, setMediaData) => {
-	try {
-		const { data } = await axios.get(`${tmdbActionUrl}/discover/tv/${page}`);
+		const { data } = await axios.get(
+			`${tmdbActionUrl}/discover/${mediaTye}/${page}`
+		);
 		setMediaData(data.data);
 	} catch (error) {
 		console.error("Error fetching trending media:", error);
@@ -38,6 +32,22 @@ export const useSearchMultiMedia = async (
 				`${tmdbActionUrl}/search/${mediaType}/${searchQuery}`
 			);
 			setMediaData(data.data);
+		}
+	} catch (error) {
+		console.error("Error fetching trending media:", error);
+	}
+};
+export const useFetchMediaDetail = async (
+	mediaId,
+	setMediaDetail,
+	mediaType
+) => {
+	try {
+		if (mediaId && mediaType) {
+			const { data } = await axios.get(
+				`${tmdbActionUrl}/detail/${mediaType}/${mediaId}`
+			);
+			setMediaDetail(data.data);
 		}
 	} catch (error) {
 		console.error("Error fetching trending media:", error);

@@ -11,9 +11,9 @@ export const searchMovieMedia =
 export const searchTvMedia =
 	"https://api.themoviedb.org/3/search/tv?query=query_Text&include_adult=true&language=en-US";
 export const detailMovieMedia =
-	"https://api.themoviedb.org/3/movie/movie_id?language=en-US";
+	"https://api.themoviedb.org/3/movie/movie_id?append_to_response=20&language=en-US";
 export const detailTvMedia =
-	"https://api.themoviedb.org/3/tv/series_id?language=en-US";
+	"https://api.themoviedb.org/3/tv/series_id?append_to_response=20&language=en-US";
 export const castMovieMedia =
 	"https://api.themoviedb.org/3/movie/movie_id/credits?language=en-US";
 export const castTvMedia =
