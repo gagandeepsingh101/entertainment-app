@@ -3,29 +3,43 @@ import { useParams } from "react-router-dom";
 import SingleCard from "../components/SingleCard";
 import { useSearchMultiMedia } from "../service/tmdb.service";
 import { DNA } from "react-loader-spinner";
+import { useLocation } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const SearchMedia = () => {
 	const { mediaType, searchQuery } = useParams();
 	const [mediaData, setMediaData] = useState(null);
 	const [loading, setLoading] = useState(true);
 	const searchMediaData = useSearchMultiMedia;
+	const { pathname } = useLocation();
+	const bookmarkedData = useSelector((state) => state.bookmark.bookmarks);
 
 	useEffect(() => {
 		setMediaData(null);
 		setLoading(true);
 		setTimeout(() => {
 			if (searchQuery) {
-				searchMediaData(
-					searchQuery,
-					(data) => {
-						setMediaData(data);
-						setLoading(false);
-					},
-					mediaType
-				);
+				if (pathname.includes("bookmarks")) {
+					console.log(pathname);
+					setMediaData(
+						bookmarkedData.filter((bookmark) =>
+							bookmark.title.toLowerCase().includes(searchQuery.toLowerCase())
+						)
+					);
+				} else {
+					// Invoke useSearchMultiMedia to fetch data
+					searchMediaData(
+						searchQuery,
+						(data) => {
+							setMediaData(data);
+						},
+						mediaType
+					);
+				}
+				setLoading(false);
 			}
 		}, 2000);
-	}, [searchQuery, mediaType, searchMediaData]);
+	}, [searchQuery, mediaType, searchMediaData, pathname, bookmarkedData]);
 
 	return (
 		<>
@@ -51,7 +65,11 @@ const SearchMedia = () => {
 										<SingleCard
 											mediaData={mediaInfo}
 											mediaType={mediaType}
-											fieldType={"search " + mediaType + " data"}
+											fieldType={
+												pathname.includes("bookmarks")
+													? "bookmarks"
+													: "search " + mediaType + " data"
+											}
 										/>
 									</div>
 								))}

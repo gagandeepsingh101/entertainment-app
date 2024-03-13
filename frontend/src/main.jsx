@@ -11,6 +11,8 @@ import Tv from "./pages/Tv.jsx";
 import SearchMedia from "./pages/SearchMedia.jsx";
 import MovieDetail from "./pages/MovieDetail.jsx";
 import TvDetail from "./pages/TvDetail.jsx";
+import { Provider } from "react-redux";
+import { store } from "./store/store.js";
 const router = createBrowserRouter([
 	{
 		path: "/",
@@ -88,5 +90,7 @@ const router = createBrowserRouter([
 	},
 ]);
 ReactDOM.createRoot(document.getElementById("root")).render(
-	<RouterProvider router={router} />
+	<Provider store={store}>
+		<RouterProvider router={router} />
+	</Provider>
 );

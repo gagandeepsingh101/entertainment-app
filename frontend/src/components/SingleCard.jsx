@@ -1,23 +1,37 @@
 import { useEffect, useState } from "react";
-import { useFetchTMDBImage } from "../utils/useFetchTMDBImage.utils";
+import { CiBookmark } from "react-icons/ci";
+import { IoMdBookmark } from "react-icons/io";
+import { IoPlayCircle } from "react-icons/io5";
+import { LuDot } from "react-icons/lu";
 import { MdLocalMovies } from "react-icons/md";
 import { TbDeviceTvOld } from "react-icons/tb";
-import { LuDot } from "react-icons/lu";
-import { CiBookmark } from "react-icons/ci";
-import { IoPlayCircle } from "react-icons/io5";
 import { useNavigate } from "react-router-dom";
+import { useFetchTMDBImage } from "../utils/useFetchTMDBImage.utils";
+import { useDispatch, useSelector } from "react-redux";
+import { addBookmark, removeBookmark } from "../store/bookmarkSlice";
 
 const SingleCard = ({ mediaData, fieldType, mediaType }) => {
 	const fetchTmdbImage = useFetchTMDBImage;
 	const [posterImage, setPosterImage] = useState();
+	const [isBookmark, setIsBookmarked] = useState(false);
 	const navigate = useNavigate();
+	const dispatch = useDispatch();
+	const bookmarkData = useSelector((state) => state.bookmark.bookmarks);
 	useEffect(() => {
 		fetchTmdbImage(
-			mediaData.id,
+			mediaData.id || mediaData.mediaId,
 			setPosterImage,
 			mediaType || mediaData?.mediaType
 		);
-	}, [fetchTmdbImage, mediaData.id, mediaData.mediaType, mediaType]);
+		if (
+			bookmarkData.some(
+				(bookmark) => (bookmark.mediaId || bookmark.id) == mediaData.id
+			) ||
+			fieldType === "bookmarks"
+		) {
+			setIsBookmarked(true);
+		}
+	}, [bookmarkData, dispatch, fetchTmdbImage, fieldType, mediaData, mediaType]);
 
 	return (
 		<>
@@ -53,7 +67,23 @@ const SingleCard = ({ mediaData, fieldType, mediaType }) => {
 								{mediaData.title}
 							</p>
 						</div>
-						<CiBookmark className="absolute right-1 top-1 bg-[#00000070] text-3xl p-1 rounded-full hover:bg-white hover:fill-black cursor-pointer md:right-2 md:top-2 md:text-4xl lg:text-5xl" />
+						{isBookmark ? (
+							<IoMdBookmark
+								onClick={() => {
+									setIsBookmarked(false);
+									dispatch(removeBookmark(mediaData.id || mediaData.mediaId));
+								}}
+								className="absolute z-50 right-1 top-1 bg-[#00000070] text-2xl p-1 rounded-full hover:bg-white hover:fill-black cursor-pointer md:text-3xl md:right-2 md:top-2 lg:text-4xl"
+							/>
+						) : (
+							<CiBookmark
+								onClick={() => {
+									setIsBookmarked(true);
+									dispatch(addBookmark(mediaData));
+								}}
+								className="absolute z-50 right-1 top-1 bg-[#00000070] text-2xl p-1 rounded-full hover:bg-white hover:fill-black cursor-pointer md:text-3xl md:right-2 md:top-2 lg:text-4xl"
+							/>
+						)}
 						<div
 							onClick={() => {
 								navigate(
@@ -87,7 +117,23 @@ const SingleCard = ({ mediaData, fieldType, mediaType }) => {
 								No Image Preview
 							</div>
 						)}
-						<CiBookmark className="absolute z-50 right-1 top-1 bg-[#00000070] text-2xl p-1 rounded-full hover:bg-white hover:fill-black cursor-pointer md:text-3xl md:right-2 md:top-2 lg:text-4xl" />
+						{isBookmark ? (
+							<IoMdBookmark
+								onClick={() => {
+									setIsBookmarked(false);
+									dispatch(removeBookmark(mediaData.id || mediaData.mediaId));
+								}}
+								className="absolute z-50 right-1 top-1 bg-[#00000070] text-2xl p-1 rounded-full hover:bg-white hover:fill-black cursor-pointer md:text-3xl md:right-2 md:top-2 lg:text-4xl"
+							/>
+						) : (
+							<CiBookmark
+								onClick={() => {
+									setIsBookmarked(true);
+									dispatch(addBookmark(mediaData));
+								}}
+								className="absolute z-50 right-1 top-1 bg-[#00000070] text-2xl p-1 rounded-full hover:bg-white hover:fill-black cursor-pointer md:text-3xl md:right-2 md:top-2 lg:text-4xl"
+							/>
+						)}
 						<div
 							onClick={() => {
 								navigate(
@@ -129,5 +175,4 @@ const SingleCard = ({ mediaData, fieldType, mediaType }) => {
 		</>
 	);
 };
-
 export default SingleCard;

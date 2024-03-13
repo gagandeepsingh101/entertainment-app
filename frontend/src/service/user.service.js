@@ -37,7 +37,7 @@ export const loginUser = async (userData) => {
 				},
 			}
 		);
-		console.log(data);
+		// console.log(data);
 		setCookie("UserAuth", data.loginToken, 7);
 		toast.success(data.message);
 	} catch (error) {
@@ -52,7 +52,7 @@ export const logoutUser = async () => {
 				Authorization: document.cookie,
 			},
 		});
-		console.log(data);
+		// console.log(data);
 		setCookie("UserAuth", document.cookie.split("=")[1], 0);
 		toast.success(data.message);
 	} catch (error) {

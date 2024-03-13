@@ -13,7 +13,7 @@ const MovieDetail = () => {
 	useEffect(() => {
 		fetchMovieDetail(mediaId, setMediaDetail, "movie");
 	}, [fetchMovieDetail, mediaId]);
-	console.log(mediaDetail);
+	// console.log(mediaDetail);
 	return (
 		<>
 			{mediaDetail ? (

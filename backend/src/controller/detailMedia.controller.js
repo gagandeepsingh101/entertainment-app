@@ -16,8 +16,6 @@ export const detailMovieController = async (req, res) => {
 		const { cast } = await fetchData(
 			castMovieMedia.replace("movie_id", movieId.toString())
 		);
-
-		console.log(movieData)
 		// Responding with transformed data
 		res.json({
 			success: true,

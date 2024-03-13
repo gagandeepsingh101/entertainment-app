@@ -13,7 +13,6 @@ export const verifyToken = async function (req, res, next) {
 				message: "Please login to access user information",
 			});
 		}
-
 		// Extract public key from environment variables
 		const publicKey = process.env.SECRET_TOKEN;
 

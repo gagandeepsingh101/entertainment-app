@@ -1,9 +1,18 @@
-import Header from "./components/Header";
-import { Outlet } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { useEffect } from "react";
 import { Toaster } from "react-hot-toast";
+import { Outlet } from "react-router-dom";
+import Header from "./components/Header";
 import SearchBar from "./components/SearchBar";
+import { fetchUserBookmark } from "./store/bookmarkSlice";
 
 function App() {
+	const dispatch = useDispatch();
+	useEffect(() => {
+		setTimeout(() => {
+			dispatch(fetchUserBookmark());
+		}, 2000);
+	}, [fetchUserBookmark]);
 	return (
 		<div className="bg-leanBlue relative h-screen w-screen overflow-y-scroll flex flex-col overflow-x-hidden items-center justify-evenly text-white lg:flex-row scrollbar-corner-transparent scrollbar-thin  scrollbar-thumb-darkRed scrollbar-track-transparent overflow-scroll py-5  ">
 			<Toaster />

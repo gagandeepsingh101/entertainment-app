@@ -13,7 +13,7 @@ const TvDetail = () => {
 	useEffect(() => {
 		fetchTvDetail(mediaId, setMediaDetail, "tv");
 	}, [fetchTvDetail, mediaId]);
-	console.log(mediaDetail);
+	// console.log(mediaDetail);
 	return (
 		<>
 			{mediaDetail ? (

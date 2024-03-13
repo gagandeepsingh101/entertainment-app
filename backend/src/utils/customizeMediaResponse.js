@@ -4,7 +4,6 @@ export const customizeMediaData = (mediaData, mediaType = undefined) => {
 		title: media.name || media.title,
 		image: media.poster_path,
 		isAdult: media.adult,
-		rating: media.vote_average / 3,
 		mediaType: mediaType === undefined ? media.media_type : mediaType,
 		releaseDate: media.release_date || media.first_air_date,
 	}));
@@ -18,7 +17,7 @@ export const customizeDetailSingleMediaData = (
 	return {
 		mediaData: {
 			id: mediaData.id,
-			title: mediaData.title || mediaData.original_name,
+			title: mediaData.title || mediaData.name,
 			overview: mediaData.overview,
 			image: mediaData.poster_path,
 			isAdult: mediaData.adult,
