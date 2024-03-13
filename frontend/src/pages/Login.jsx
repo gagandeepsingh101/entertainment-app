@@ -1,3 +1,4 @@
+// Import necessary libraries and functions
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import { MdMovie } from "react-icons/md";
@@ -5,30 +6,38 @@ import { useNavigate } from "react-router-dom";
 import * as yup from "yup";
 import { loginUser } from "../service/user.service";
 
+// Define validation schema using Yup
 const schema = yup.object().shape({
 	email: yup.string().email("Invalid email").required("Can't be empty"),
 	password: yup.string().required("Can't be empty"),
 });
 
+// Define the Login component
 const Login = () => {
+	// Initialize navigate function from react-router-dom
 	const navigate = useNavigate();
+
+	// Destructure methods and state from useForm hook
 	const {
 		register,
 		handleSubmit,
 		reset,
 		formState: { errors },
 	} = useForm({
-		resolver: yupResolver(schema),
+		resolver: yupResolver(schema), // Set resolver to handle validation with Yup
 	});
 
+	// Function to handle form submission
 	const onSubmit = (data) => {
-		// console.log(data);
-		loginUser(data);
-		navigate("/");
-		reset();
+		loginUser(data); // Call loginUser function from user.service to handle login logic
+		navigate("/"); // Navigate to home page after successful login
+		reset(); // Reset form fields
 	};
 
+	// Log validation errors to console
 	console.log(errors);
+
+	// Render the Login component
 	return (
 		<div className="bg-leanBlue w-screen h-screen text-white flex flex-col justify-center items-center gap-10 p-3">
 			<MdMovie className="text-darkRed text-5xl md:text-6xl" />
@@ -79,7 +88,4 @@ const Login = () => {
 	);
 };
 
-export default Login;
-
-
-
+export default Login; // Export Login component

@@ -7,17 +7,26 @@ import StarRating from "../components/StarRating";
 import { DNA } from "react-loader-spinner";
 
 const TvDetail = () => {
+	// Extracting the mediaId parameter from the URL
 	const { mediaId } = useParams();
+
+	// State to store the fetched media detail
 	const [mediaDetail, setMediaDetail] = useState();
+
+	// Fetching media detail using a custom hook
 	const fetchTvDetail = useFetchMediaDetail;
+
+	// Fetch media detail when the component mounts or mediaId changes
 	useEffect(() => {
 		fetchTvDetail(mediaId, setMediaDetail, "tv");
 	}, [fetchTvDetail, mediaId]);
-	// console.log(mediaDetail);
+
 	return (
 		<>
+			{/* Conditional rendering based on whether mediaDetail is available */}
 			{mediaDetail ? (
 				<div className="w-screen h-screen bg-leanBlue flex flex-col overflow-y-scroll scrollbar-corner-transparent scrollbar-thin items-center gap-5 py-4  scrollbar-thumb-darkRed scrollbar-track-transparent lg:flex-row lg:p-10 lg:justify-evenly">
+					{/* Displaying media image */}
 					<img
 						src={
 							"https://image.tmdb.org/t/p/w500" + mediaDetail?.mediaData?.image
@@ -25,6 +34,7 @@ const TvDetail = () => {
 						className="w-5/6 h-fit md:w-1/2 lg:w-1/3 lg:h-full my-auto "
 						alt=""
 					/>
+					{/* Displaying media details */}
 					<div className="w-5/6 h-fit text-white flex flex-col gap-3 md:gap-6 lg:h-full lg:w-1/2">
 						<p className="text-HeadingXS md:text-HeadingM lg:text-HeadingL font-bold">
 							{mediaDetail?.mediaData?.title}
@@ -32,16 +42,16 @@ const TvDetail = () => {
 						<p className="text-BodyS md:text-BodyM lg:text-HeadingXS">
 							{mediaDetail?.mediaData?.tagline}
 						</p>
+						{/* Displaying rating and star rating component */}
 						<div className="flex items-center gap-4">
 							<p className="text-BodyM md:text-HeadingXS lg:text-HeadingL">
 								{mediaDetail?.mediaData?.rating.toFixed(1)}
 							</p>
-							<StarRating
-								rating={Math.round(
-									mediaDetail?.mediaData?.rating
-								)}></StarRating>
+							<StarRating rating={Math.round(mediaDetail?.mediaData?.rating)} />
 						</div>
-						<div className="flex justify-between font-medium text-BodyS md:text-BodyM lg:text-HeadingXS ">
+						{/* Displaying additional media details */}
+						<div className="flex justify-between font-medium text-BodyS md:text-BodyM lg:text-HeadingXS">
+							{/* Language, First Air, Last Air, Status */}
 							<p className="flex flex-col">
 								<span className="text-waikawaGrey">Language</span>
 								<span>{mediaDetail?.mediaData?.language[0]}</span>
@@ -59,6 +69,7 @@ const TvDetail = () => {
 								<span>{mediaDetail?.mediaData?.status}</span>
 							</p>
 						</div>
+						{/* Displaying genres */}
 						<div className="w-full flex flex-col gap-1 lg:gap-3">
 							<p className="text-BodyM font-bold md:text-HeadingXS lg:text-HeadingM">
 								Genres
@@ -73,6 +84,7 @@ const TvDetail = () => {
 								))}
 							</div>
 						</div>
+						{/* Displaying synopsis */}
 						<div className="w-full flex flex-col gap-2">
 							<p className="text-BodyM font-bold md:text-HeadingXS lg:text-HeadingM">
 								Synopsis
@@ -81,6 +93,7 @@ const TvDetail = () => {
 								{mediaDetail?.mediaData?.overview}
 							</p>
 						</div>
+						{/* Displaying cast */}
 						<div className="w-full flex flex-col gap-2">
 							<p className="text-BodyM font-bold md:text-HeadingXS lg:text-HeadingM">
 								Casts
@@ -95,6 +108,7 @@ const TvDetail = () => {
 								))}
 							</div>
 						</div>
+						{/* Buttons for website and IMDB */}
 						<div className="w-full flex gap-5 py-10">
 							<button
 								onClick={() => {
@@ -131,6 +145,7 @@ const TvDetail = () => {
 					</div>
 				</div>
 			) : (
+				// Displaying a loading spinner while data is being fetched
 				<div className="w-screen h-screen flex items-center justify-center bg-leanBlue">
 					<DNA height={100} width={100} />
 				</div>

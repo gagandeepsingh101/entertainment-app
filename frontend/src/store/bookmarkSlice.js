@@ -1,6 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 import { bookmarkActionUrl } from "../utils/constant.utils";
+import { successToast } from "../utils/customSuccessToast";
 
 // Thunk for adding a bookmark
 export const addBookmark = createAsyncThunk(
@@ -17,6 +18,7 @@ export const addBookmark = createAsyncThunk(
 					},
 				}
 			);
+			successToast(data.message);
 			return mediaData;
 		} catch (error) {
 			console.log(error);
@@ -30,7 +32,6 @@ export const removeBookmark = createAsyncThunk(
 	"bookmark/removeBookmark",
 	async (mediaID, thunkAPI) => {
 		try {
-			console.log(mediaID);
 			const { data } = await axios.delete(
 				bookmarkActionUrl + "/remove/" + mediaID,
 				{
@@ -40,7 +41,7 @@ export const removeBookmark = createAsyncThunk(
 					},
 				}
 			);
-			// console.log(data);
+			successToast(data.message);
 			return mediaID;
 		} catch (error) {
 			console.log(error);
@@ -60,6 +61,7 @@ export const fetchUserBookmark = createAsyncThunk(
 					Authorization: document.cookie,
 				},
 			});
+			console.log(data);
 			return data.data;
 		} catch (error) {
 			return thunkAPI.rejectWithValue(error.response.data);
@@ -79,15 +81,15 @@ export const bookmarkSlice = createSlice({
 				// Add the newly added bookmark to the state
 				state.bookmarks.push(action.payload);
 			})
-			.addCase(fetchUserBookmark.fulfilled, (state, action) => {
-				// Update bookmarks with fetched user bookmarks
-				state.bookmarks = action.payload;
-			})
 			.addCase(removeBookmark.fulfilled, (state, action) => {
 				// Remove the deleted bookmark from the state
 				state.bookmarks = state.bookmarks.filter(
-					(bookmark) => bookmark.mediaId !== action.payload
+					(bookmark) => (bookmark.mediaId || bookmark.id) != action.payload
 				);
+			})
+			.addCase(fetchUserBookmark.fulfilled, (state, action) => {
+				// Update bookmarks with fetched user bookmarks
+				state.bookmarks = action.payload;
 			});
 	},
 });

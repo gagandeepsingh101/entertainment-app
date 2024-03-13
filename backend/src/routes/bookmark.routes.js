@@ -8,8 +8,13 @@ import {
 
 const bookmarkRouter = express.Router();
 
+// Route to add a bookmark
 bookmarkRouter.post("/bookmark/add", verifyToken, addBookmarkController);
+
+// Route to fetch user's bookmark data
 bookmarkRouter.get("/bookmark/data", verifyToken, fetchUserBookmarkController);
+
+// Route to remove a bookmark
 bookmarkRouter.delete(
 	"/bookmark/remove/:movieId",
 	verifyToken,

@@ -31,10 +31,9 @@ export const registerController = async function (req, res) {
 			password: hashedPassword,
 		});
 		await newUser.save();
-		console.log("user created successfully");
 		res
 			.status(201)
-			.json({ success: true, message: "User Registration successful" });
+			.json({ success: true, message: "User Registration successfully" });
 	} catch (error) {
 		console.log(error.message);
 		res.status(500).json({ success: false, message: "Internal Server Error" });
@@ -74,14 +73,11 @@ export const loginController = async function (req, res) {
 
 		// Generate JWT token
 		const jwkToken = jwt.sign({ email: email }, process.env.SECRET_TOKEN);
-		res
-			.cookie("UserAuth", jwkToken)
-			.status(200)
-			.json({
-				success: true,
-				message: "User Login successful",
-				loginToken: jwkToken,
-			});
+		res.cookie("UserAuth", jwkToken).status(200).json({
+			success: true,
+			message: "User Login successfully",
+			loginToken: jwkToken,
+		});
 	} catch (error) {
 		console.log(error.message);
 		res.status(500).json({ success: false, message: "Internal Server Error" });
