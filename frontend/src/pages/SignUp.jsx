@@ -34,7 +34,7 @@ const SignUp = () => {
 	const onSubmit = async (data) => {
 		try {
 			// Call registerUser function to register the user
-			await registerUser(data);
+			await registerUser(data, navigate);
 			// Reset form fields after successful registration
 			reset();
 		} catch (error) {

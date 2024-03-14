@@ -4,7 +4,7 @@ import { setCookie } from "../utils/cookieAction.utils";
 import { errorToast, successToast } from "../utils/customToast";
 
 // Register a new user
-export const registerUser = async (userData) => {
+export const registerUser = async (userData, navigate) => {
 	try {
 		// Send a POST request to register endpoint
 		const { data } = await axios.post(
@@ -22,6 +22,10 @@ export const registerUser = async (userData) => {
 		);
 		// Display success message
 		successToast(data.message);
+		setTimeout(() => {
+			navigate("/login"); // Navigate to home page after successful login
+			document.location.reload();
+		}, 2000);
 	} catch (error) {
 		// Log error if registration fails
 		errorToast(error.response.data.message);
@@ -30,7 +34,7 @@ export const registerUser = async (userData) => {
 };
 
 // Login an existing user
-export const loginUser = async (userData) => {
+export const loginUser = async (userData, navigate) => {
 	try {
 		// Send a POST request to login endpoint
 		const { data } = await axios.post(
@@ -49,6 +53,10 @@ export const loginUser = async (userData) => {
 		setCookie("UserAuth", data.loginToken, 7);
 		// Display success message
 		successToast(data.message);
+		setTimeout(() => {
+			navigate("/"); // Navigate to home page after successful login
+			document.location.reload();
+		}, 2000);
 	} catch (error) {
 		// Log error if login fails
 		errorToast(error.response.data.message);

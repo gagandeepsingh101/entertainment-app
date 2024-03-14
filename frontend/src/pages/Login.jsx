@@ -30,14 +30,8 @@ const Login = () => {
 
 	// Function to handle form submission
 	const onSubmit = (data) => {
-		loginUser(data); // Call loginUser function from user.service to handle login logic
+		loginUser(data, navigate); // Call loginUser function from user.service to handle login logic
 		reset(); // Reset form fields
-		if (document.cookie) {
-			navigate("/"); // Navigate to home page after successful login
-			setTimeout(() => {
-				document.location.reload();
-			}, 2000);
-		}
 	};
 	// Render the Login component
 	return (
