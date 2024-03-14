@@ -70,6 +70,7 @@ const Header = () => {
 						return;
 					}
 					logoutUser();
+					document.location.reload();
 				}}
 				className="h-fit w-fit ring-darkRed ring-1 rounded-full p-1">
 				{/* User profile image */}
