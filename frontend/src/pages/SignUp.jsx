@@ -4,6 +4,7 @@ import { MdMovie } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
 import * as yup from "yup";
 import { registerUser } from "../service/user.service";
+import { Toaster } from "react-hot-toast";
 
 // Define validation schema using Yup
 const schema = yup.object().shape({
@@ -45,6 +46,7 @@ const SignUp = () => {
 	// Render the sign-up form
 	return (
 		<div className="bg-leanBlue w-screen h-screen text-white flex flex-col justify-center items-center gap-10 p-3">
+			<Toaster position="top-right" reverseOrder={false} />
 			{/* Movie icon */}
 			<MdMovie className="text-darkRed text-5xl md:text-6xl" />
 			<div className="h-3/5 w-11/12 bg-deepBlue rounded-xl flex flex-col justify-evenly md:w-1/2 lg:w-1/4">

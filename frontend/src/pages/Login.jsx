@@ -5,6 +5,7 @@ import { MdMovie } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
 import * as yup from "yup";
 import { loginUser } from "../service/user.service";
+import { Toaster } from "react-hot-toast";
 
 // Define validation schema using Yup
 const schema = yup.object().shape({
@@ -31,18 +32,17 @@ const Login = () => {
 	const onSubmit = (data) => {
 		loginUser(data); // Call loginUser function from user.service to handle login logic
 		reset(); // Reset form fields
-		navigate("/"); // Navigate to home page after successful login
-		setTimeout(() => {
-			document.location.reload();
-		}, 2000);
+		if (document.cookie) {
+			navigate("/"); // Navigate to home page after successful login
+			setTimeout(() => {
+				document.location.reload();
+			}, 2000);
+		}
 	};
-
-	// Log validation errors to console
-	console.log(errors);
-
 	// Render the Login component
 	return (
 		<div className="bg-leanBlue w-screen h-screen text-white flex flex-col justify-center items-center gap-10 p-3">
+			<Toaster position="top-right" reverseOrder={false} />
 			<MdMovie className="text-darkRed text-5xl md:text-6xl" />
 			<div className="h-1/2 w-11/12 bg-deepBlue rounded-xl flex flex-col justify-evenly md:w-1/2 lg:w-1/4">
 				<p className="text-HeadingL px-4 font-light">Login</p>

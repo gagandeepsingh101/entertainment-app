@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 import { bookmarkActionUrl } from "../utils/constant.utils";
-import { successToast } from "../utils/customSuccessToast";
+import { errorToast, successToast } from "../utils/customToast";
 
 // Thunk for adding a bookmark
 export const addBookmark = createAsyncThunk(
@@ -21,7 +21,8 @@ export const addBookmark = createAsyncThunk(
 			successToast(data.message);
 			return mediaData;
 		} catch (error) {
-			console.log(error);
+			// console.log(error);
+			errorToast(error.reponse.data.message);
 			return thunkAPI.rejectWithValue(error.response.data);
 		}
 	}
@@ -44,7 +45,8 @@ export const removeBookmark = createAsyncThunk(
 			successToast(data.message);
 			return mediaID;
 		} catch (error) {
-			console.log(error);
+			// console.log(error);
+			errorToast(error.reponse.data.message);
 			return thunkAPI.rejectWithValue(error.response.data);
 		}
 	}

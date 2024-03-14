@@ -10,7 +10,7 @@ export const useFetchTrendingMedia = async (page, setMediaData) => {
 		setMediaData(data.data);
 	} catch (error) {
 		// Log error if fetching fails
-		console.error("Error fetching trending media:", error);
+		// console.error("Error fetching trending media:", error);
 	}
 };
 
@@ -25,7 +25,7 @@ export const useFetchMultiMedia = async (page, setMediaData, mediaType) => {
 		setMediaData(data.data);
 	} catch (error) {
 		// Log error if fetching fails
-		console.error("Error fetching multi-media:", error);
+		// console.error("Error fetching multi-media:", error);
 	}
 };
 
@@ -47,7 +47,7 @@ export const useSearchMultiMedia = async (
 		}
 	} catch (error) {
 		// Log error if fetching fails
-		console.error("Error searching multi-media:", error);
+		// console.error("Error searching multi-media:", error);
 	}
 };
 
@@ -69,6 +69,6 @@ export const useFetchMediaDetail = async (
 		}
 	} catch (error) {
 		// Log error if fetching fails
-		console.error("Error fetching media detail:", error);
+		// console.error("Error fetching media detail:", error);
 	}
 };

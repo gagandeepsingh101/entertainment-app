@@ -1,8 +1,7 @@
 import axios from "axios";
 import { userActionUrl } from "../utils/constant.utils";
 import { setCookie } from "../utils/cookieAction.utils";
-import toast from "react-hot-toast";
-import { successToast } from "../utils/customSuccessToast";
+import { errorToast, successToast } from "../utils/customToast";
 
 // Register a new user
 export const registerUser = async (userData) => {
@@ -25,7 +24,8 @@ export const registerUser = async (userData) => {
 		successToast(data.message);
 	} catch (error) {
 		// Log error if registration fails
-		console.error("Error registering user:", error.message);
+		errorToast(error.response.data.message);
+		// console.error("Error registering user:", error.message);
 	}
 };
 
@@ -51,7 +51,8 @@ export const loginUser = async (userData) => {
 		successToast(data.message);
 	} catch (error) {
 		// Log error if login fails
-		console.error("Error logging in user:", error.message);
+		errorToast(error.response.data.message);
+		// console.error("Error logging in user:", error.response.data.message);
 	}
 };
 
@@ -70,8 +71,8 @@ export const logoutUser = async () => {
 		// Display success message
 		successToast(data.message);
 	} catch (error) {
-		console.log(error)
 		// Log error if logout fails
-		console.error("Error logging out user:", error.message);
+		errorToast(error.response.data.message);
+		// console.error("Error logging out user:", error.message);
 	}
 };

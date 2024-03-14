@@ -23,7 +23,7 @@ const Tv = () => {
 				<>
 					{/* Heading for the section */}
 					<p className="text-HeadingM font-light md:font-normal lg:font-light lg:text-HeadingL">
-						Movie
+						Tv Series
 					</p>
 					{/* Displaying fetched media data */}
 					<div className="w-full h-5/6 flex flex-wrap items-center   ">
