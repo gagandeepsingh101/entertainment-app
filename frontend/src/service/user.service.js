@@ -70,6 +70,7 @@ export const logoutUser = async () => {
 		// Display success message
 		successToast(data.message);
 	} catch (error) {
+		console.log(error)
 		// Log error if logout fails
 		console.error("Error logging out user:", error.message);
 	}
