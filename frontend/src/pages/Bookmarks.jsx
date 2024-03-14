@@ -11,12 +11,12 @@ const Bookmarks = () => {
 
 	// Check if user is logged in, set loading state accordingly
 	useEffect(() => {
-		if (bookmarks.length === 0) {
+		if (!document.cookie) {
 			navigate("/signup"); // Redirect to signup if not logged in
 		} else {
 			setLoading(false); // Set loading to false once user is logged in
 		}
-	}, [bookmarks.length, navigate]);
+	}, [navigate]);
 
 	return (
 		<>
