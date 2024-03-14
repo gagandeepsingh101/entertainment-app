@@ -30,7 +30,6 @@ const Login = () => {
 	// Function to handle form submission
 	const onSubmit = (data) => {
 		loginUser(data); // Call loginUser function from user.service to handle login logic
-		document.location.reload(); // reload whole website
 		navigate("/"); // Navigate to home page after successful login
 		reset(); // Reset form fields
 	};
