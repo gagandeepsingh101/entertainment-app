@@ -70,9 +70,9 @@ const Header = () => {
 						return;
 					}
 					logoutUser();
-					setTimeout(() => {
-						document.location.reload();
-					}, 2000);
+					// setTimeout(() => {
+					// 	document.location.reload();
+					// }, 2000);
 				}}
 				className="h-fit w-fit ring-darkRed ring-1 rounded-full p-1">
 				{/* User profile image */}
