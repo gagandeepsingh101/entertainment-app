@@ -18,7 +18,6 @@ const SingleCard = ({ mediaData, fieldType, mediaType }) => {
 	const navigate = useNavigate();
 	const dispatch = useDispatch();
 	const bookmarkData = useSelector((state) => state.bookmark.bookmarks);
-	console.log(mediaData);
 	// Effect for fetching image and checking bookmark status
 	useEffect(() => {
 		fetchTmdbImage(
