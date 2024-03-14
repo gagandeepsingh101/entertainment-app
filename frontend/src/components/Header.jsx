@@ -72,7 +72,6 @@ const Header = () => {
 					logoutUser();
 					setTimeout(() => {
 						document.location.reload();
-						navigate("/");
 					}, 2000);
 
 					// Reload page after logout
