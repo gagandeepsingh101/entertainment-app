@@ -18,7 +18,7 @@ export const registerController = async function (req, res) {
 		// Check if user already exists with the provided email
 		const user = await User.findOne({ email });
 		if (user) {
-			return res.status(409).json({
+			return res.status(208).json({
 				success: false,
 				message: "User already exists with your email address",
 			});
@@ -47,7 +47,7 @@ export const loginController = async function (req, res) {
 
 		// Check if email or password is missing
 		if (!email || !password) {
-			return res.status(400).json({
+			return res.status(203).json({
 				success: false,
 				message: "Provide your email address and password",
 			});
@@ -65,7 +65,7 @@ export const loginController = async function (req, res) {
 		// Compare hashed passwords
 		const hasEqualPassword = await bcrypt.compare(password, user.password);
 		if (!hasEqualPassword) {
-			return res.status(401).json({
+			return res.status(201).json({
 				success: false,
 				message: "Invalid password or email address provided",
 			});
@@ -92,7 +92,7 @@ export const userDetailController = async function (req, res) {
 		// Find user by email
 		const user = await User.findOne({ email });
 		if (!user) {
-			return res.status(404).json({
+			return res.status(204).json({
 				success: false,
 				message: "User not found",
 			});
