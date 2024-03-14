@@ -9,9 +9,7 @@ import { fetchUserBookmark } from "./store/bookmarkSlice";
 function App() {
 	const dispatch = useDispatch();
 	useEffect(() => {
-		setTimeout(() => {
-			dispatch(fetchUserBookmark());
-		}, 2000);
+		dispatch(fetchUserBookmark());
 	}, [dispatch]);
 	return (
 		<div className="bg-leanBlue relative h-screen w-screen overflow-y-scroll flex flex-col overflow-x-hidden items-center justify-evenly text-white lg:flex-row scrollbar-corner-transparent scrollbar-thin  scrollbar-thumb-darkRed scrollbar-track-transparent overflow-scroll py-5  ">

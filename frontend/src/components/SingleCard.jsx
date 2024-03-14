@@ -98,7 +98,7 @@ const SingleCard = ({ mediaData, fieldType, mediaType }) => {
 							onClick={() => {
 								navigate(
 									`/${mediaData.mediaType ? mediaData.mediaType : mediaType}/${
-										mediaData?.id
+										mediaData?.id || mediaData?.mediaId
 									}`
 								);
 							}}
@@ -151,7 +151,7 @@ const SingleCard = ({ mediaData, fieldType, mediaType }) => {
 							onClick={() => {
 								navigate(
 									`/${mediaData.mediaType ? mediaData.mediaType : mediaType}/${
-										mediaData?.id
+										mediaData?.id || mediaData?.mediaId
 									}`
 								);
 							}}
