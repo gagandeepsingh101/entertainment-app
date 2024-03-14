@@ -61,7 +61,6 @@ export const fetchUserBookmark = createAsyncThunk(
 					Authorization: document.cookie,
 				},
 			});
-			console.log(data);
 			return data.data;
 		} catch (error) {
 			return thunkAPI.rejectWithValue(error.response.data);
