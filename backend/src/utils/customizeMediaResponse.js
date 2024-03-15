@@ -43,6 +43,7 @@ export const customizeDetailSingleMediaData = (
 				release_date: mediaData.release_date, // Release date of the movie
 			}),
 		},
-		cast: cast.map((castData) => castData.name), // List of cast members' names
+		cast: cast.map((castData) => castData.name),
+		// List of cast members' names
 	};
 };

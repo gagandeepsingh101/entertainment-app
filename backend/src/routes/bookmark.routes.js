@@ -16,7 +16,7 @@ bookmarkRouter.get("/bookmark/data", verifyToken, fetchUserBookmarkController);
 
 // Route to remove a bookmark
 bookmarkRouter.delete(
-	"/bookmark/remove/:movieId",
+	"/bookmark/remove/:mediaId",
 	verifyToken,
 	deleteBookmarkController
 );

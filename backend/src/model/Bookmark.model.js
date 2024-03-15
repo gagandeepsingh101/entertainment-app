@@ -8,7 +8,6 @@ const bookmarkSchema = new mongoose.Schema({
 	mediaId: {
 		type: String,
 		required: [true, "Please provide a media id"], // Validation rule: mediaId is required
-		unique: true, // Ensure mediaId is unique
 	},
 	mediaType: {
 		type: String,

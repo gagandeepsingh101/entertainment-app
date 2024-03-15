@@ -6,7 +6,11 @@ export const addBookmarkController = async function (req, res) {
 		const { mediaData, email } = req.body;
 
 		// Check if the bookmark already exists
-		const existingBookmark = await Bookmarks.findOne({ mediaId: mediaData.id });
+		const existingBookmark = await Bookmarks.findOne({
+			mediaId: mediaData.id,
+			user: email,
+		});
+		console.log(existingBookmark);
 		if (existingBookmark) {
 			return res.status(203).json({
 				success: false,
@@ -45,18 +49,22 @@ export const addBookmarkController = async function (req, res) {
 // Controller function to delete a bookmark
 export const deleteBookmarkController = async function (req, res) {
 	try {
-		const { movieId } = req.params;
+		const { mediaId } = req.params;
+		const { email } = req.body;
 
 		// Check if movieId is provided
-		if (!movieId) {
+		if (!mediaId) {
 			return res.status(404).json({
 				success: false,
-				message: "Please provide movieId in url parameters",
+				message: "Please provide mediaId in url parameters",
 			});
 		}
 
 		// Find and delete the bookmark
-		await Bookmarks.findOneAndDelete(movieId);
+		await Bookmarks.findOneAndDelete({
+			mediaId: mediaId,
+			user: email,
+		});
 
 		// Respond with success message
 		res.status(200).json({
