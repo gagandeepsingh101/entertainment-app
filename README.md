@@ -37,9 +37,9 @@ The Entertainment App is a full-stack application designed to provide users with
 
 4. **Configure Environment Variables**: Create a `.env` file based on the provided `.env.example` file. Provide your MongoDB URI and TMDB API key in the `.env` file.
    ```bash
-    MONGODB_URL=your mongodb url
-    SECRET_TOKEN= your secret token for user authentication
-    TMDB_TOKEN= your tmdb token for tmdb media data
+    MONGODB_URL= "your mongodb url"
+    SECRET_TOKEN= "your secret token for user authentication"
+    TMDB_TOKEN= "your tmdb token for tmdb media data"
    ```
 
 5. **Start the Server**: Run the backend server.
@@ -63,8 +63,8 @@ The Entertainment App is a full-stack application designed to provide users with
 
 3. **Configure Environment Variables**: Create a `.env` file in the frontend directory and specify the URL of the backend server. For example:
    ```bash
-   REACT_APP_BACKEND_URL= your live backend server
-   VITE_APP_TMDB_API_KEY= your tmdb api key for image
+   REACT_APP_BACKEND_URL= "your live backend server"
+   VITE_APP_TMDB_API_KEY= "your tmdb api key for image"
    ```
 
 4. **Start the Application**: Run the frontend application.
@@ -113,6 +113,3 @@ Contributions are welcome! Please follow these steps to contribute:
 4. Push to the branch (`git push origin feature/AmazingFeature`).
 5. Open a Pull Request.
 
-## License
-
-This project is licensed under the MIT License.
