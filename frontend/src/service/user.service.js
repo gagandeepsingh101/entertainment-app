@@ -24,7 +24,6 @@ export const registerUser = async (userData, navigate) => {
 		successToast(data.message);
 		setTimeout(() => {
 			navigate("/login"); // Navigate to home page after successful login
-			document.location.reload();
 		}, 2000);
 	} catch (error) {
 		// Log error if registration fails
