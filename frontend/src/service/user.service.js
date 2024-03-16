@@ -23,7 +23,7 @@ export const registerUser = async (userData, navigate) => {
 		// Display success message
 		successToast(data.message);
 		setTimeout(() => {
-			navigate("/login"); // Navigate to home page after successful login
+			navigate("/login"); // Navigate to login page after successful register
 		}, 2000);
 	} catch (error) {
 		// Log error if registration fails
