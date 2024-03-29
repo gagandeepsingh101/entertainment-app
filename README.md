@@ -39,7 +39,7 @@ The Entertainment App is a full-stack application designed to provide users with
    ```bash
     MONGODB_URL= "your mongodb url"
     SECRET_TOKEN= "your secret token for user authentication"
-    TMDB_TOKEN= "your tmdb token for tmdb media data"
+    TMDB_TOKEN= "your tmdb access token for tmdb media data"
    ```
 
 5. **Start the Server**: Run the backend server.
