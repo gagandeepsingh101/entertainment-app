@@ -103,6 +103,9 @@ You can visit API documentation from [here](https://documenter.getpostman.com/vi
 ### Database Design
 You can visit Database Design from [here](https://docs.google.com/document/d/1iWpAIfILl7cN4DK83MJfC0teh3CVMQW79ts3X503EkQ/edit?usp=sharing)
 
+## Note
+If tmdb api is not working then change your system dns according to [this](https://www.isitdownrightnow.com/themoviedb.org.html)
+
 ## Contributing
 
 Contributions are welcome! Please follow these steps to contribute:
